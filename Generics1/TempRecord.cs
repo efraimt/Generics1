@@ -34,7 +34,7 @@ namespace Generics1
         }
 
         public Student LastStudent
-        { 
+        {
             get => Students[Count - 1];
             set => Students[Count - 1] = value;
         }
@@ -59,39 +59,44 @@ namespace Generics1
         {
             foreach (var item in Students)
             {
-                if(item.Name==name)
-                return item;
+                if (item.Name == name)
+                    return item;
             }
             return null;
-}
+        }
 
 
-        public Student this [int i] => Students[i];
-        public Student this [string name]=>GetByName(name);
+        public Student this[int i] => Students[i];
+
+        //לא חוקי!
+
+        //public int this[int i] => Students[i].Height;
+        public Student this[string name] => GetByName(name);
     }
-}
 
-public class TempRecord
-{
-    // Array of temperature values
-    float[] temps = new float[10]
+    public class TempRecord
     {
+        // Array of temperature values
+        float[] temps = new float[10]
+        {
         56.2F, 56.7F, 56.5F, 56.9F, 58.8F,
         61.3F, 65.9F, 62.1F, 59.2F, 57.5F
-    };
+        };
 
-    // To enable client code to validate input
-    // when accessing your indexer.
-    public int Length => temps.Length;
+        // To enable client code to validate input
+        // when accessing your indexer.
+        public int Length => temps.Length;
 
-    // Indexer declaration.
-    // If index is out of range, the temps array will throw the exception.
-    public float this[int index]
-    {
-        get => temps[index];
-        set => temps[index] = value;
+        // Indexer declaration.
+        // If index is out of range, the temps array will throw the exception.
+        public float this[int index, int min]
+        {
+            get => temps[index];
+            set => temps[index] = value;
+        }
+
+        public int MyProperty { get; set; }
     }
+}
 
-    public int MyProperty { get; set; }
-}
-}
+
